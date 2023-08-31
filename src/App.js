@@ -13,19 +13,31 @@ function Body() {
   date.setDate(date.getDate() + count);
 
   function HandleCountPlus() {
-    return setCount((count) => count + 1);
+    return setCount((count) => count + step);
   }
 
   function HandleCountMinus() {
-    return setCount((count) => count - 1);
+    return setCount((count) => count - step);
+  }
+
+  function HandleStepPlus() {
+    return setStep((step) => step + 1);
+  }
+
+  function HandleStepMinus() {
+    return setStep((step) => step - 1);
   }
 
   return (
     <div className="entire">
       <div className="step">
-        <button className="btnStepMinus">-</button>
+        <button className="btnStepMinus" onClick={HandleStepMinus}>
+          -
+        </button>
         <span className="innerStep">Step: {step}</span>
-        <button className="btnStepPlus">+</button>
+        <button className="btnStepPlus" onClick={HandleStepPlus}>
+          +
+        </button>
       </div>
 
       <div className="count">
