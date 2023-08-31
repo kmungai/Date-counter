@@ -6,77 +6,37 @@ export default function App() {
 }
 
 function Body() {
-  const [step, setStep] = useState(0);
-  const [date, setDate] = useState();
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(0);
 
-  function HandleStepPlus() {
-    setStep((step) => step + 1);
-    setDate((date) => date.myDate() + step);
+  const date = new Date();
+  date.setDate(date.getDate() + count);
+
+  function HandleCountPlus() {
+    return setCount((count) => count + 1);
   }
 
-  function HandleStepMinus() {
-    return step > 1 ? setStep((step) => step - 1) : null;
-  }
-
-  // function HandleStepMinus() {}
-
-  function myDate() {
-    var today = new Date();
-    var todayDate = today.getDate();
-    var day = today.getDay();
-    var month = today.getMonth();
-    var year = today.getFullYear();
-
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    var newMonth = months[month];
-
-    var daysOfWeek = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ];
-    var newDays = daysOfWeek[day];
-
-    return `${newDays} ${newMonth} ${todayDate} ${year}`;
+  function HandleCountMinus() {
+    return setCount((count) => count - 1);
   }
 
   return (
     <div className="entire">
       <div className="step">
-        <button className="btnStepMinus" onClick={HandleStepMinus}>
-          -
-        </button>
+        <button className="btnStepMinus">-</button>
         <span className="innerStep">Step: {step}</span>
-        <button className="btnStepPlus" onClick={HandleStepPlus}>
-          +
-        </button>
+        <button className="btnStepPlus">+</button>
       </div>
 
       <div className="count">
-        <button>-</button>
-        <span>Count: 0</span>
-        <button>+</button>
+        <button onClick={HandleCountMinus}>-</button>
+        <span>Count: {count}</span>
+        <button onClick={HandleCountPlus}>+</button>
       </div>
 
-      <p className="dateMessage">{date}</p>
+      <p>
+        <span>{date.toDateString()}</span>
+      </p>
     </div>
   );
 }
