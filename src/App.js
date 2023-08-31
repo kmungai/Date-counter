@@ -47,7 +47,16 @@ function Body() {
       </div>
 
       <p>
-        <span>{date.toDateString()}</span>
+        <span>
+          {count === 0
+            ? "The Date TODAY is "
+            : count > 0
+            ? `${count} days from today will be `
+            : count < 0
+            ? `${Math.abs(count)} days ago was `
+            : null}
+        </span>
+        <span>{date.toDateString()}.</span>
       </p>
     </div>
   );
